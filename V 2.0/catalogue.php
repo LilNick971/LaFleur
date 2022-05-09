@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+echo "<table id='produits'>"; 
+ // Création de la requête 
+ $requete = $pdo->query("SELECT * FROM produit 
+ where idcategorie='$_GET[categ]' "); 
+ // Traitement du résultat de cette requête 
+ while( $ligne = $requete->fetch() ) { 
+ echo "<tr>"; 
+ echo "<td>$ligne[id] </td>"; 
+ echo "<td>$ligne[description]</td>"; 
+ echo "<td>$ligne[prix] Euros</td>"; 
+ echo "<td><img src=$ligne[image] 
+ alt='Lafleur - .$ligne[description]' </td>"; 
+ echo "</tr>"; 
+ } 
+ echo "</table"; 
+ unset($pdo); 
+ unset($requete);
+<!DOCTYPE html>
 <html>
 <head>
 <title>Lafleur - Nos compositions</title>
@@ -27,3 +48,4 @@
 </div>
 </body>
 </html>
+?>
